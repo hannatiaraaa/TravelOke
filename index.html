@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<title>TravelOke</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Libre+Baskerville:wght@400;700&family=Montserrat&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+  <!-- Theme -->
+  <button class="circle" onclick="toggleMyTheme()" id="myThemeBtn">
+    <span class="center">CHANGE<br>MODE</span>
+  </button>
+
+  <!-- Icon Bar (Sidebar - hidden on small screens) -->
+  <nav id="mySidebar" class="sidebar bar-block small hide-small center">
+    <!-- Avatar image in top left corner -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="width:2%">&times;</a>
+    <a href="#" class="bar-item button padding-large black">
+      <i class="fa fa-home xxlarge"></i>
+      <p>HOME</p>
+    </a>
+    <a href="#login" class="bar-item button padding-large hover-black" onclick="document.getElementById('login').style.display='block'">
+      <i class="fa fa-user xxlarge"></i>
+      <p>ACCOUNT</p>
+    </a>
+    <a href="#packages" class="bar-item button padding-large hover-black">
+      <i class="fa fa-globe xxlarge"></i>
+      <p>DESTINATION</p>
+    </a>
+    <a href="#contact" class="bar-item button padding-large hover-black">
+      <i class="fa fa-envelope xxlarge"></i>
+      <p>CONTACT</p>
+    </a>
+  </nav>
+
+  <!-- Navbar on small screens (Hidden on medium and large screens) -->
+  <div class="top hide-large hide-medium" id="myNavbar">
+    <div class="bar black opacity hover-opacity-off center small">
+      <i class="logo tiny opacity-max" style="width:10% !important">LOGO</i>
+      <a href="#" class="bar-item button" style="width:20% !important">HOME</a>
+      <a href="#login" class="bar-item button" style="width:20% !important" onclick="document.getElementById('login').style.display='block'">ACCOUNT</a>
+      <a href="#packages" class="bar-item button" style="width:30% !important">DESTINATION</a>
+      <a href="#contact" class="bar-item button" style="width:20% !important">CONTACT</a>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <!-- Account/Login Section -->
+  <!-- Login Form -->
+  <div id="login" class="modal">
+    <span href="#" onclick="document.getElementById('login').style.display='none'" class="close">&times;</span>
+
+    <form class="modal-content round opacity-min hover-opacity-off pale-blue animate-zoom">
+      <div class="container">
+        <p>Don't have an account? Create a membership
+          <a href="#signup" onclick="document.getElementById('signup').style.display='block'" style="color:dodgerblue">
+            here
+          </a>.
+          It's free!
+        </p>
+
+        <label for="uname"><b>Username</b></label>
+        <input class="inputform" type="text" placeholder="Enter Username" name="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input class="inputform" type="password" placeholder="Enter Password" name="psw" required>
+
+        <div class="row-padding">
+          <label class="half left-align inputform">
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+          <a class="half right-align psw" href="#">Forgot password?</a>
+        </div>
+        <button class="login center aqua panel" type="submit" style="width:100%">Login</button>
+      </div>
+
+      <div class="container">
+        <button class="button btn padding red margin-bottom" type="button" onclick="document.getElementById('login').style.display='none'">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Membership (contains the Sign Up form) -->
+  <div id="signup" class="modal">
+    <span href=# onclick="document.getElementById('signup').style.display='none'" class="close">&times;</span>
+    <form class="modal-content round orange animate-opacity">
+      <div class="container">
+        <h1>Sign Up</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr>
+        <label for="email"><b>Email</b></label>
+        <input class="inputform" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" placeholder="Enter Email" name="email" required>
+
+        <label for="password"><b>Password</b></label>
+        <input class="inputform" type="password" placeholder="Enter Password" name="password" required>
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input class="inputform" type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+        <label>
+          <input class="inputform" type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix row-padding panel">
+          <button type="button" class="third left button round-medium red" onclick="document.getElementById('signup').style.display='none'">
+            Cancel
+          </button>
+          <button type="submit" class="half right button btn round-medium aqua">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- End Account Section -->
+
+  <!-- Booking Form -->
+  <div id="booking" class="modal">
+    <span href="#" onclick="document.getElementById('booking').style.display='none'" class="close">&times;</span>
+    <div class="modal-content animate-top round yellow">
+      <div class="bar black">
+        <button class="bar-item button tablink" onclick="openLink(event, 'Flight');"><i class="fa fa-plane margin-right"></i>Flight</button>
+        <button class="bar-item button tablink" onclick="openLink(event, 'Hotel');"><i class="fa fa-bed margin-right"></i>Hotel</button>
+        <button class="bar-item button tablink" onclick="openLink(event, 'Agent');"><i class="fa fa-users margin-right"></i>Guide Agent</button>
+      </div>
+
+      <!-- Tabs -->
+      <div id="Flight" class="container padding-16 myLink">
+        <h3>Explore the world with us</h3>
+        <div class="row-padding" style="margin:0 -16px;">
+          <div class="half">
+            <label>From</label>
+            <input class="input inputform border" type="text" placeholder="Departing from">
+          </div>
+          <div class="half">
+            <label>To</label>
+            <input class="input inputform border" type="text" placeholder="Arriving at">
+          </div>
+        </div>
+        <p><button class="button dark-grey">Search and find dates</button></p>
+      </div>
+
+      <div id="Hotel" class="container padding-16 myLink">
+        <h3>Find the best hotels</h3>
+        <p>Book a hotel with us and get the best fares and promotions.</p>
+        <p>We know hotels - we know comfort.</p>
+        <p><button class="button dark-grey">Search Hotels</button></p>
+      </div>
+
+      <div id="Agent" class="container padding-16 myLink">
+        <h3>Best travel agent all over the world!</h3>
+        <p><span class="tag deep-orange">DISCOUNT!</span> Special offer for your first booking: 25% off anywhere in the world with <i>TravelOke</i></p>
+        <input class="input inputform border" type="text" placeholder="Pick-up point">
+        <p><button class="button dark-grey">Find Perfect Guides</button></p>
+      </div>
+    </div>
+  </div>
+  <!-- End Modals-->
+
+  <!-- Page Content -->
+  <div class="padding-large" id="main">
+    <!-- Navbar button -->
+    <div class="top hide-small">
+      <button class="openbtn " onclick="openNav()">&#9776;</button>
+      <i class="logo medium padding-small opacity-max">LOGO</i>
+    </div>
+    <!-- Header/Home -->
+    <header class="container padding-32 center" id="home">
+      <h1 class="hide-small jumbo">Travel now with<span class="text-orange"> TravelOke</span><a class="fa fa-thumbs-up text-orange"></a></h1>
+      <h1 class="hide-medium hide-large xxlarge">Travel now with<span class="text-orange"> TravelOke</span><a class="fa fa-thumbs-up text-orange"></a></h1>
+      <p>Your every travel plans are going to be OK!</p>
+      <img class="cover image animate-fading" src="images/cover1.jpg">
+      <img class="cover image animate-fading" src="images/cover2.jpg">
+      <img class="cover image animate-fading" src="images/cover3.jpg">
+      <img class="cover image animate-fading" src="images/cover4.jpg">
+      <img class="cover image animate-fading" src="images/cover5.jpg">
+      <img class="cover image animate-fading" src="images/cover6.jpg">
+      <img class="cover image animate-fading" src="images/cover7.jpg">
+      <img class="cover image animate-fading" src="images/cover8.jpg">
+      <img class="cover image animate-fading" src="images/cover9.jpg">
+      <img class="cover image animate-fading" src="images/cover10.jpg">
+      <img class="cover image animate-fading" src="images/cover11.jpg">
+      <img class="cover image animate-fading" src="images/cover12.jpg">
+      <img class="cover image animate-fading" src="images/cover13.jpg">
+      <img class="cover image animate-fading" src="images/cover14.jpg">
+    </header>
+    <!-- End Header Section -->
+
+    <!-- Destination/Packages Section -->
+    <div class="content" id="packages">
+      <div class="center padding-64">
+        <h3>Get discount up to <strong>90%</strong> right now!</h3>
+        <h6>Only for TravelOke Member</h6>
+        <button href=#login class="login button btn yellow round-xlarge padding-large section" onclick="document.getElementById('login').style.display='block'">Login</button>
+      </div>
+
+      <h2 class="padding-36">Choose your destination package.</h2>
+      <hr style="width:200px" class="opacity">
+
+      <!-- Grid for packages -->
+      <div class="row-padding slideshow-container center" style="margin:0 -16px">
+        <div class="packages">
+          <div class="package third">
+            <img src="images/bali.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>
+                  <span>SPECIAL PACKAGE</span><br>Bali, Indonesia</strong><br>1 month
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/newyork.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>New York, US</strong><br>1 full-week
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/cairo.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Cairo, Egypt</strong><br>3 days + 2 nights
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="packages">
+          <div class="package third">
+            <img src="images/berlin.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Berlin, Germany</strong><br>5 days + 4 nights
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/dubai.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Dubai, United Arab Emirates</strong><br>5 days + 4 nights
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/hawaii.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Hawaii</strong><br>2 weeks
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="packages">
+          <div class="package twothird">
+            <img src="images/bogor.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Bogor, Indonesia</strong><br>3 days + 2 nights
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/rome.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Rome, Italy</strong><br>1 full-week
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package twothird">
+            <img src="images/paris.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <strong>Paris, France</strong><br>5 days + 6 nights
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+          <div class="package third">
+            <img src="images/mecca.jpg">
+            <div class="content-package">
+              <a class="padding-small">
+                <span>SPECIAL PACKAGE</span><br>Mecca, Saudi Arabia<br>Ramadan / Hajj month
+              </a><br>
+              <button href="#booking" class="btn round-large border-black booknow padding center" onclick="document.getElementById('booking').style.display='block'">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      </div>
+
+      <br>
+      <!-- The dots/circles -->
+      <div class="center content">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+    </div>
+    <!-- End Packages Section -->
+
+    <!-- Footer/Contact Section -->
+    <footer class="container content padding-48 aqua opacity-min" id="contact" style="margin-top:64px">
+      <div class="row-padding">
+        <h2>Contact Us</h2>
+        <hr style="width:200px" class="opacity">
+
+        <div class="half content text-dark-grey left">
+          <p>Any questions or personal requests? Send us a message:</p>
+
+          <form target="_blank">
+            <p><input class="input padding-16" type="text" placeholder="Name" required name="Name"></p>
+            <p><input class="input padding-16" type="email" placeholder="Email" required name="Email"></p>
+            <p><input class="input padding-16" type="text" placeholder="Subject" required name="Subject"></p>
+            <p><input class="input padding-16" type="text" placeholder="Message" required name="Message"></p>
+            <p>
+              <button class="button dark-grey padding-large" type="submit">
+                <i class="fa fa-paper-plane"></i> SEND MESSAGE
+              </button>
+            </p>
+          </form>
+        </div>
+
+        <div class="half content right">
+          <ul><i class="fa fa-map-marker fa-fw text-white xxlarge"></i> Bogor, Indonesia</ul>
+          <ul><i class="fa fa-phone fa-fw text-white xxlarge"></i> Phone: +62 2121212121</ul>
+          <ul><i class="fa fa-envelope fa-fw text-white xxlarge"> </i> Email: mail@traveloke.com</ul>
+          <div class="padding-24 center">
+            <h6><span>Join Our Newsletter!</span></h6>
+            <label><i>Enter your email and get our best offers first.</i></label>
+            <form target="_blank" style="margin-top:2px">
+              <input class="newsletter half input round-xxlarge" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" placeholder="Your Email Address" required name="Email">
+              <button class="subscribe third button btn border border-orange round-medium" type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="center text-dark-grey section xlarge">
+        <i class="fa fa-facebook-official hover-opacity fb"></i>
+        <i class="fa fa-instagram hover-opacity ig"></i>
+        <i class="fa fa-snapchat hover-opacity snapchat"></i>
+        <i class="fa fa-pinterest-p hover-opacity pinterest"></i>
+        <i class="fa fa-twitter hover-opacity twitter"></i>
+        <p class="medium text-black">Created by <a target="_blank" class="hover-text-deep-orange">Hanna Tiara Andarlia</a></p>
+      </div>
+    </footer>
+    <!-- End Footer/Contact Section -->
+
+  </div>
+
+  <!-- Scripts -->
+    <script src="main.js"></script>
+  </body>
+</html>
