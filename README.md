@@ -9,6 +9,6 @@ TravelOke is a hypothetical startup website that offers the ease of searching fo
 
 This repository is divided into *.html* file, *.css* file, *.js* file, and other image files in *images folder*.
 Here, there are some popup modals, various buttons, animations, slideshows, dark and light mode, and also a flexible sidebar menu that I have been trying to be user-friendly for all gadgets (responsive).
-You can view the display of this project outcome at the following link: [hannatiaraaa.github.io/TravelOke](hannatiaraaa.github.io/TravelOke)
+You can view the display of this project outcome at the following link: [hannatiaraaa.github.io/TravelOke/](https://hannatiaraaa.github.io/TravelOke/)
 
 Thank you
