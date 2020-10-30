@@ -1,3 +1,8 @@
+/*
+  Hanna Tiara Andarlia
+  Career Exploration #7 by Glints Academy with Progate
+*/
+
 "use strict";
 
 /* Navbar */
